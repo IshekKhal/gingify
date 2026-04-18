@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Gingify</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .privacy-body {
+      padding: 48px 0 64px;
+      max-width: 640px;
+    }
+    .privacy-body h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .privacy-body .updated {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+    .privacy-body h2 {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 32px 0 10px;
+    }
+    .privacy-body p {
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+    .privacy-body p strong {
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html">[G] Gingify</a>
+      <nav class="header-nav">
+        <a href="https://github.com/IshekKhal/gingify" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="index.html#download">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Privacy Policy ──────────────────────────────────────── -->
+  <div class="container">
+    <div class="privacy-body">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Effective April 2026</p>
+
+      <h2>Gingify Desktop App</h2>
+      <p>Gingify Desktop runs <strong>entirely on your PC</strong>. It does not have a backend, does not send analytics, and does not collect crash reports.</p>
+      <p>The only network request it makes is checking the <strong>GitHub API for updates</strong> on startup (<code>api.github.com/repos/IshekKhal/gingify/releases/latest</code>). This request sends no personal data — only a standard HTTPS GET from your IP address, which is no different from opening any web page. You can disable auto-update checks in settings.</p>
+      <p>No personal data, no crash reports, no analytics — ever.</p>
+
+      <h2>Gingify Browser Extension</h2>
+      <p>All data stays <strong>in your browser</strong>. Tab URLs are read to identify domains and stored in <strong>session storage</strong>, which is cleared automatically when the browser closes.</p>
+      <p>Your per-domain rules sync via <strong>Chrome's own sync infrastructure</strong> (<code>chrome.storage.sync</code>) if you are signed into Chrome — this goes through Google's servers, not ours. We do not have servers.</p>
+      <p>We cannot see your browsing data. We do not receive it. We cannot receive it — there is no server to receive it.</p>
+
+      <h2>What we do not do</h2>
+      <p>
+        <strong>No data is ever sold.</strong> No advertising. No third-party analytics. No tracking pixels. No fingerprinting. No telemetry of any kind.
+      </p>
+
+      <h2>Contact</h2>
+      <p>If you have questions or concerns, open an issue on <a href="https://github.com/IshekKhal/gingify/issues" target="_blank" rel="noopener">GitHub Issues</a>.</p>
+    </div>
+  </div>
+
+  <!-- ── Footer ──────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Gingify · <a href="privacy.html">Privacy Policy</a> · <a href="https://github.com/IshekKhal/gingify" target="_blank" rel="noopener">GitHub</a> · GPL-3.0 · Built by a 17-year-old in India.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

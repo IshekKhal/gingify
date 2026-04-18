@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gingify — The RAM Manager Windows Forgot to Ship</title>
+  <meta name="description" content="Free RAM instantly without closing apps. Gingify puts idle apps to sleep and wakes them when you need them. Built in Rust. Zero telemetry. GPL-3.0.">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="mono">[G]</span> Gingify</a>
+      <div class="nav-links">
+        <a href="https://github.com/IshekKhal/gingify" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://github.com/IshekKhal/gingify/releases/latest/download/Gingify-Setup.exe" class="btn-nav-dl">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>The RAM manager<br>Windows forgot to ship.</h1>
+      <p class="hero-sub">Slack. Discord. Spotify. Chrome. They're eating your RAM right now.<br>
+      Gingify puts them to sleep. Wakes them when you need them. You lose nothing.</p>
+      <div class="badges">
+        <span class="badge">Built in Rust</span>
+        <span class="badge">Uses &lt;5MB RAM</span>
+        <span class="badge">Zero Telemetry</span>
+        <span class="badge">GPL-3.0 Open Source</span>
+      </div>
+      <a href="https://github.com/IshekKhal/gingify/releases/latest/download/Gingify-Setup.exe"
+         class="btn-primary">Download for Windows</a>
+      <p class="hero-meta">Windows 10 / 11 · 64-bit · ~10MB</p>
+      <p class="hero-telemetry">Zero telemetry. Nothing leaves your PC. Ever.</p>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="container">
+      <h2>Why does 16GB feel like 4GB?</h2>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-label">Windows Copilot</div>
+          <div class="stat-value red">up to 800 MB</div>
+          <div class="stat-desc">just sitting there</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Slack + Discord + Spotify</div>
+          <div class="stat-value amber">1.1 GB combined</div>
+          <div class="stat-desc">at idle, doing nothing</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Chrome (10 tabs)</div>
+          <div class="stat-value amber">~2.5 GB</div>
+          <div class="stat-desc">before you do anything</div>
+        </div>
+      </div>
+      <p class="stats-body">Windows suspends its own Store apps when idle. But it does nothing about Win32 apps — the Electron apps, the game clients, the chat tools. They sit in RAM forever. <strong>Until now.</strong></p>
+    </div>
+  </section>
+
+  <section class="how-section">
+    <div class="container">
+      <h2>How Gingify works</h2>
+      <div class="demo-placeholder">
+        <!-- Drop demo.gif or demo.mp4 into the same folder to replace this placeholder -->
+        <img src="demo.gif" alt="Gingify in action" class="demo-media"
+             onerror="this.style.display='none'">
+        <div class="demo-inner">[ Drop demo.gif here before launch ]</div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <p>Monitors every app running on your PC — RAM usage, idle time, CPU activity</p>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <p>When RAM gets tight, snoozes idle apps automatically — or do it manually any time</p>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <p>Click any app to wake it instantly. It resumes exactly where it left off. Nothing is lost.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="compare-section">
+    <div class="container">
+      <h2>What makes this different</h2>
+      <table class="compare-table">
+        <thead>
+          <tr><th>Tool</th><th>What it does</th><th>Problem</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>WinMemoryCleaner</td><td>Flushes all working sets at once</td><td>Dumb, causes stutter, UI looks like 2009</td></tr>
+          <tr><td>Reduce Memory</td><td>Same — one button flush</td><td>No intelligence, no profiles, scamware vibes</td></tr>
+          <tr><td>Opera GX Limiter</td><td>Limits browser RAM only</td><td>Only works for Opera GX</td></tr>
+          <tr><td>Chrome Memory Saver</td><td>Passively sleeps inactive tabs</td><td>No manual control, no per-domain rules, no dashboard</td></tr>
+          <tr><td>Windows itself</td><td>Suspends UWP/Store apps</td><td>Doesn't touch Win32 apps (Slack, Discord, Spotify)</td></tr>
+          <tr><td>FreeToStock</td><td>Process freezer for gaming</td><td>Developer tool, no UI, not a product</td></tr>
+          <tr class="gingify-row"><td><strong>Gingify</strong></td><td>Smart, per-process, profile-based, all apps + Chrome extension</td><td class="gap-cell"><strong>This is the gap</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="ext-section">
+    <div class="container">
+      <h2>Also: Gingify for Chrome</h2>
+      <p class="ext-sub">The same idea, inside your browser. Sleep individual tabs, set per-domain rules, free RAM without closing anything.</p>
+      <div class="ext-card">
+        <div class="ext-features">
+          <div class="ext-feature"><span class="ext-icon">⏸</span><div><strong>Snooze any tab</strong><p>Click Sleep on a tab to freeze it. Click anywhere to wake it instantly.</p></div></div>
+          <div class="ext-feature"><span class="ext-icon">⚙</span><div><strong>Per-domain rules</strong><p>Always sleep Reddit after 5 min. Never sleep Gmail.</p></div></div>
+          <div class="ext-feature"><span class="ext-icon">⚡</span><div><strong>Bulk controls</strong><p>Snooze All / Wake All with one click.</p></div></div>
+        </div>
+        <div class="ext-install">
+          <p class="ext-install-title">Install in 1 minute — no store required</p>
+          <ol class="ext-steps">
+            <li>Download <a href="https://github.com/IshekKhal/gingify/releases/latest" target="_blank" rel="noopener"><strong>gingify-extension.zip</strong></a> from Releases</li>
+            <li>Unzip to any folder</li>
+            <li>Open Chrome → <code>chrome://extensions</code> → enable <strong>Developer mode</strong></li>
+            <li>Click <strong>"Load unpacked"</strong> → select the unzipped folder</li>
+          </ol>
+          <p class="ext-note">Not on the Chrome Web Store yet — publishing costs $5. Source is fully open on GitHub.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container cta-inner">
+      <h2>Free. Forever. No accounts. No telemetry.</h2>
+      <a href="https://github.com/IshekKhal/gingify/releases/latest/download/Gingify-Setup.exe"
+         class="btn-primary btn-large">Download Gingify for Windows</a>
+      <p class="cta-meta">Latest release · Windows 10/11 · Open source on GitHub</p>
+      <a href="https://github.com/IshekKhal/gingify" target="_blank" rel="noopener" class="star-link">★ Star on GitHub</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Gingify</span>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="https://github.com/IshekKhal/gingify" target="_blank" rel="noopener">GitHub</a>
+        <span>GPL-3.0</span>
+        <span>Built by a 17-year-old in India.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
