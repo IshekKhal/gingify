@@ -1,0 +1,319 @@
+/* ── Reset & Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg: #F5F5F5;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A1A;
+    --text-secondary: #666666;
+    --border: #DCDCDC;
+    --accent: #2E7D32;
+    --danger: #C62828;
+    --warning: #E65100;
+    --warning-bg: #FFF3E0;
+    --danger-bg: #FFEBEE;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #1E1E1E;
+        --surface: #2A2A2A;
+        --text-primary: #E8E8E8;
+        --text-secondary: #999999;
+        --border: #3A3A3A;
+        --accent: #4CAF50;
+        --danger: #EF5350;
+        --warning: #FFA726;
+        --warning-bg: #3A2B14;
+        --danger-bg: #3A1E20;
+    }
+}
+
+body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+/* ── Sections ─────────────────────────────────────────────────────────────── */
+
+.settings-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.section-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    padding: 12px 16px 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* ── Setting Rows ─────────────────────────────────────────────────────────── */
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.setting-row:last-child {
+    border-bottom: none;
+}
+
+.setting-label {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+select {
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+/* ── CSS-only Toggle Switch ───────────────────────────────────────────────── */
+
+.toggle-switch {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.toggle-switch input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-track {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    background: var(--border);
+    border-radius: 11px;
+    transition: background 0.2s;
+}
+
+.toggle-switch input:checked + .toggle-track {
+    background: var(--accent);
+}
+
+.toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: left 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch input:checked + .toggle-track .toggle-thumb {
+    left: 21px;
+}
+
+/* ── Rules Table ──────────────────────────────────────────────────────────── */
+
+.rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.rules-table th {
+    text-align: left;
+    padding: 8px 16px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+}
+
+.rules-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.rules-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.no-rules-msg {
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* ── Add Rule Form ────────────────────────────────────────────────────────── */
+
+#add-rule-btn {
+    margin: 12px 16px;
+}
+
+.add-rule-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    align-items: center;
+}
+
+.add-rule-form input[type="text"],
+.add-rule-form input[type="number"] {
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 5px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--text-primary);
+    outline-offset: 2px;
+}
+
+.add-rule-form input[type="text"] {
+    width: 180px;
+}
+
+.add-rule-form input[type="number"] {
+    width: 70px;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+.btn-primary {
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 5px 14px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 5px 12px;
+    background: var(--surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--bg);
+}
+
+.btn-secondary:disabled {
+    color: var(--text-secondary);
+    cursor: not-allowed;
+}
+
+.btn-remove {
+    font-family: var(--font);
+    font-size: 12px;
+    padding: 2px 8px;
+    background: none;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-remove:hover {
+    background: var(--danger);
+    color: #fff;
+}
+
+/* ── Storage Warnings ─────────────────────────────────────────────────────── */
+
+.storage-warning {
+    margin: 8px 16px;
+    padding: 8px 12px;
+    background: var(--warning-bg);
+    border: 1px solid var(--warning);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--warning);
+}
+
+.storage-full-error {
+    margin: 8px 16px;
+    padding: 8px 12px;
+    background: var(--danger-bg);
+    border: 1px solid var(--danger);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--danger);
+}
+
+/* ── About Section ────────────────────────────────────────────────────────── */
+
+.about-section .section-title {
+    border-bottom: none;
+}
+
+.about-section p {
+    padding: 6px 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.about-section a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.about-section a:hover {
+    text-decoration: underline;
+}
+
+.about-version {
+    color: var(--text-primary) !important;
+    font-weight: 600;
+}
+
+.about-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: 2px;
+}

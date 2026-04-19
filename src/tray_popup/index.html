@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gingify</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────────────────────── -->
+  <header class="popup-header" data-tauri-drag-region>
+    <span class="popup-title" data-tauri-drag-region>Gingify</span>
+    <button id="btn-close" class="btn-close" title="Close" data-tauri-no-drag>×</button>
+  </header>
+
+  <!-- ── RAM Bar Section ──────────────────────────────────────────────────── -->
+  <section class="section ram-section">
+    <div class="ram-status-row">
+      <span id="ram-status-dot" class="status-dot dot-green">●</span>
+      <span id="ram-status-text" class="ram-status-text">Loading…</span>
+    </div>
+    <div class="ram-bar-track" role="progressbar" aria-label="RAM usage">
+      <div id="ram-bar-fill" class="ram-bar-fill"></div>
+    </div>
+    <div class="ram-detail-row">
+      <span id="ram-used-text" class="ram-detail-text"></span>
+      <span id="ram-total-text" class="ram-detail-text"></span>
+    </div>
+  </section>
+
+  <!-- ── Action Buttons ───────────────────────────────────────────────────── -->
+  <section class="section action-section">
+    <button id="btn-free-now" class="btn btn-primary">Free RAM Now</button>
+    <button id="btn-gaming-mode" class="btn btn-secondary">Gaming Mode</button>
+  </section>
+
+  <!-- ── Inline result feedback ───────────────────────────────────────────── -->
+  <div id="trim-result-banner" class="trim-result-banner hidden"></div>
+
+  <!-- ── Divider ──────────────────────────────────────────────────────────── -->
+  <hr class="divider" />
+
+  <!-- ── Process List ─────────────────────────────────────────────────────── -->
+  <section class="section process-section">
+    <div id="process-list" class="process-list">
+      <p class="process-loading">Loading processes…</p>
+    </div>
+    <a id="link-see-all" href="#" class="see-all-link">See all processes →</a>
+  </section>
+
+  <!-- ── Divider ──────────────────────────────────────────────────────────── -->
+  <hr class="divider" />
+
+  <!-- ── Footer: Profile Switcher + Last Freed ────────────────────────────── -->
+  <footer class="popup-footer">
+    <div class="footer-left">
+      <label for="profile-select" class="profile-label">Profile</label>
+      <select id="profile-select" class="profile-select">
+        <option value="Work">Work</option>
+        <option value="Gaming">Gaming</option>
+        <option value="Focus">Focus</option>
+      </select>
+    </div>
+    <div id="last-freed-text" class="last-freed-text hidden"></div>
+  </footer>
+
+  <script src="popup.js" defer></script>
+</body>
+</html>

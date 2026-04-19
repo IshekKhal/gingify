@@ -1,0 +1,31 @@
+Gingify puts your idle browser tabs to sleep — freeing RAM without closing them.
+Click any sleeping tab to wake it instantly.
+
+PRIVACY & TRUST
+Zero telemetry. No data ever leaves your browser. Tab URLs are stored locally in
+session storage and cleared when you close Chrome. No accounts. No servers. No tracking.
+GPL-3.0 open source — every line of code is on GitHub. Read it yourself.
+
+WHY GINGIFY?
+Chrome's built-in Memory Saver is passive. You can't force-sleep a specific tab, can't see
+RAM usage per tab, and can't set per-domain rules. Gingify gives you that control.
+
+FEATURES
+• Sleep any tab manually with one click
+• Set per-domain rules: always sleep Reddit after 5 min, never sleep Gmail
+• Real-time RAM estimate per tab so you know what's eating memory
+• Sleep All / Wake All with one click
+• Sleep on minimize — when you minimize Chrome, idle tabs sleep automatically
+• Dashboard showing total RAM saved
+• Zero data collected — all settings stay in your browser
+
+HOW IT WORKS
+1. Open the Gingify popup from the toolbar
+2. Click Sleep on any tab — it freezes and frees its RAM
+3. Click the sleeping tab anytime — it reloads instantly
+
+PRIVACY
+Gingify has no servers. No accounts. Tab URLs are stored locally in session storage
+(cleared when you close Chrome). Your rules sync via Chrome's own sync system.
+
+Free and open source.

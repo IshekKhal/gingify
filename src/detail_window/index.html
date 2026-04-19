@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gingify</title>
+  <meta name="description" content="Gingify — RAM Manager for Windows. View processes, bloat, history and settings." />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+
+  <!-- ── Tab Navigation ─────────────────────────────────────────────────────── -->
+  <nav class="tab-bar" role="tablist" aria-label="Detail tabs">
+    <button id="tab-btn-overview"   class="tab-btn active" data-tab="overview"   role="tab" aria-selected="true"  aria-controls="tab-overview">Overview</button>
+    <button id="tab-btn-processes"  class="tab-btn"        data-tab="processes"  role="tab" aria-selected="false" aria-controls="tab-processes">Processes</button>
+    <button id="tab-btn-bloat"      class="tab-btn"        data-tab="bloat"      role="tab" aria-selected="false" aria-controls="tab-bloat">Bloat</button>
+    <button id="tab-btn-history"    class="tab-btn"        data-tab="history"    role="tab" aria-selected="false" aria-controls="tab-history">History</button>
+    <button id="tab-btn-settings"   class="tab-btn"        data-tab="settings"   role="tab" aria-selected="false" aria-controls="tab-settings">Settings</button>
+  </nav>
+
+  <!-- ── Tab: Overview ──────────────────────────────────────────────────────── -->
+  <section id="tab-overview" class="tab-content active" role="tabpanel" aria-labelledby="tab-btn-overview">
+
+    <div class="overview-top">
+      <!-- RAM Bar -->
+      <div class="overview-ram-block">
+        <div class="section-label">RAM Usage</div>
+        <div class="ram-bar-track" role="progressbar" aria-label="RAM usage">
+          <div id="ov-ram-bar-fill" class="ram-bar-fill"></div>
+        </div>
+        <div class="ram-detail-row">
+          <span id="ov-ram-status" class="ram-status-text">Loading…</span>
+          <span id="ov-ram-detail" class="ram-detail-text"></span>
+        </div>
+      </div>
+
+      <!-- Profile selector -->
+      <div class="overview-profile-block">
+        <div class="section-label">Profile</div>
+        <div class="profile-radio-group" id="ov-profile-group" role="group" aria-label="Active profile">
+          <label class="profile-radio-label"><input type="radio" name="ov-profile" value="Work"   id="ov-profile-work"  /> Work</label>
+          <label class="profile-radio-label"><input type="radio" name="ov-profile" value="Gaming" id="ov-profile-gaming"/> Gaming</label>
+          <label class="profile-radio-label"><input type="radio" name="ov-profile" value="Focus"  id="ov-profile-focus" /> Focus</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-cards">
+      <div class="stats-card" id="ov-card-freed">
+        <div class="stats-card-value" id="ov-freed-value">—</div>
+        <div class="stats-card-label">Total freed today</div>
+      </div>
+      <div class="stats-card" id="ov-card-apps">
+        <div class="stats-card-value" id="ov-apps-value">—</div>
+        <div class="stats-card-label">Apps snoozed today</div>
+      </div>
+      <div class="stats-card" id="ov-card-auto">
+        <div class="stats-card-value" id="ov-auto-value">—</div>
+        <div class="stats-card-label">Times auto-triggered</div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="overview-actions">
+      <button id="ov-btn-free-now"    class="btn btn-primary" style="flex:1">Free RAM Now</button>
+      <button id="ov-btn-trim-idle"   class="btn"             style="flex:1">Snooze Idle Only</button>
+    </div>
+
+    <!-- Trim result feedback -->
+    <div id="ov-trim-banner" class="trim-banner hidden"></div>
+
+    <!-- Bloat alert -->
+    <div id="ov-bloat-alert" class="bloat-alert hidden">
+      <span id="ov-bloat-alert-text" class="bloat-alert-text"></span>
+      <button id="ov-bloat-alert-link" class="btn btn-ghost" style="font-size:11px">View Bloat Panel →</button>
+    </div>
+
+  </section>
+
+  <!-- ── Tab: Processes ─────────────────────────────────────────────────────── -->
+  <section id="tab-processes" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-processes">
+
+    <div class="tab-toolbar">
+      <label for="proc-sort" class="toolbar-label">Sort by:</label>
+      <select id="proc-sort" class="toolbar-select">
+        <option value="ram">RAM</option>
+        <option value="name">Name</option>
+        <option value="idle">Idle Time</option>
+      </select>
+      <input id="proc-filter" type="search" class="toolbar-filter" placeholder="Filter…" aria-label="Filter processes" />
+      <button id="proc-btn-trim-all-idle" class="btn btn-primary" style="margin-left:auto">Snooze Idle Apps</button>
+    </div>
+
+    <div id="proc-list-container" class="scrollable-list">
+      <p class="loading-text">Loading processes…</p>
+    </div>
+
+    <div class="tab-footer-row">
+      <label class="toggle-label" for="proc-show-system">
+        <input type="checkbox" id="proc-show-system" />
+        Show system processes
+      </label>
+    </div>
+
+  </section>
+
+  <!-- ── Tab: Bloat ─────────────────────────────────────────────────────────── -->
+  <section id="tab-bloat" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-bloat">
+
+    <div class="tab-intro">
+      <div class="tab-intro-title">Windows AI &amp; Background Services</div>
+      <div class="tab-intro-sub">These are running silently and eating your RAM.</div>
+    </div>
+
+    <div id="bloat-list-container" class="scrollable-list">
+      <p class="loading-text">Loading bloat list…</p>
+    </div>
+
+    <div class="bloat-footer">
+      <div id="bloat-total-text" class="bloat-total-text"></div>
+      <button id="bloat-btn-suspend-all" class="btn btn-danger">Suspend All Bloat</button>
+      <p class="bloat-note">Suspending does not uninstall or disable permanently. These apps resume when Windows restarts them.</p>
+    </div>
+
+  </section>
+
+  <!-- ── Tab: History ───────────────────────────────────────────────────────── -->
+  <section id="tab-history" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-history">
+
+    <div id="history-list-container" class="scrollable-list">
+      <p class="loading-text">Loading history…</p>
+    </div>
+
+    <div class="history-footer">
+      <span id="history-week-total" class="history-week-text"></span>
+    </div>
+
+  </section>
+
+  <!-- ── Tab: Settings ──────────────────────────────────────────────────────── -->
+  <section id="tab-settings" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-settings">
+    <div class="settings-scroll">
+
+      <!-- Auto-snooze -->
+      <div class="settings-group">
+        <div class="settings-group-label">Auto-snooze</div>
+        <div class="settings-row">
+          <span class="settings-row-label">Enable auto-snooze</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfg-auto-trim-enabled" />
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          </label>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">Trigger threshold</span>
+          <select id="cfg-threshold" class="settings-select">
+            <option value="70">70%</option>
+            <option value="75">75%</option>
+            <option value="80">80%</option>
+            <option value="85">85%</option>
+            <option value="90">90%</option>
+          </select>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">Idle time before snoozing</span>
+          <select id="cfg-idle-time" class="settings-select">
+            <option value="300">5 min</option>
+            <option value="600">10 min</option>
+            <option value="900">15 min</option>
+            <option value="1200">20 min</option>
+            <option value="1800">30 min</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Hard Suspend -->
+      <div class="settings-group">
+        <div class="settings-group-label">Hard Suspend</div>
+        <div class="settings-row">
+          <div>
+            <span class="settings-row-label">Enable hard suspend (Gaming Mode)</span>
+            <div class="settings-row-sub">Requires admin. More aggressive — apps fully freeze.</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfg-hard-suspend" />
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Exclusions -->
+      <div class="settings-group">
+        <div class="settings-group-label">Exclusions</div>
+        <div class="settings-row-stack">
+          <div class="settings-row-label">Never snooze these apps:</div>
+          <div id="exclusion-chips" class="exclusion-chip-row"></div>
+          <div class="exclusion-add-row">
+            <input type="text" id="exclusion-input" class="exclusion-input" placeholder="process.exe" aria-label="Process name to exclude" />
+            <button id="exclusion-add-btn" class="btn btn-primary" style="font-size:11px;padding:4px 10px">+ Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- System -->
+      <div class="settings-group">
+        <div class="settings-group-label">System</div>
+        <div class="settings-row">
+          <span class="settings-row-label">Start with Windows</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfg-start-on-login" />
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          </label>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">Show notifications</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cfg-notifications" />
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          </label>
+        </div>
+        <div class="settings-row">
+          <span class="settings-row-label">Theme</span>
+          <select id="cfg-theme" class="settings-select">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- About -->
+      <div class="settings-group">
+        <div class="settings-group-label">About</div>
+        <div class="about-row">
+          <!-- FIX: version populated dynamically from Cargo.toml via app.getVersion() -->
+          <span id="about-version" class="about-version">Gingify</span>
+          <span class="about-sep">·</span>
+          <button id="about-check-updates" class="btn btn-ghost" style="font-size:11px;padding:2px 6px">Check for updates</button>
+          <span class="about-sep">·</span>
+          <a id="about-github" href="#" class="about-link">GitHub</a>
+          <span class="about-sep">·</span>
+          <!-- FIX: Welcome Screen button removed — serves no purpose for end users -->
+          <button id="about-quit" class="btn btn-ghost btn-danger" style="font-size:11px;padding:2px 6px">Quit Gingify</button>
+        </div>
+        <div id="about-update-badge" class="update-badge hidden"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

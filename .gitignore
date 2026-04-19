@@ -1,0 +1,41 @@
+# Rust build artifacts
+/target
+/src-tauri/target
+
+# Environment / secrets
+.env
+.env.*
+
+# Node (precautionary — no Node in this project but guards future tooling)
+node_modules/
+
+# Tauri bundle output (installer .exe files are uploaded as release artifacts)
+# Note: src-tauri/target/*/release/bundle/ is already covered by /src-tauri/target above
+
+# Windows thumbnails / OS junk
+Thumbs.db
+Desktop.ini
+
+# Editor directories
+.vscode/settings.json
+.idea/
+
+# NOTE: %APPDATA%\Gingify\ is the user's runtime data directory (config, history).
+# It lives on the user's machine and is never part of this repository.
+
+# Internal dev files — not for public repo
+_docs/
+CLAUDE.md
+.claude/
+graphify-out/
+.graphify*.json
+.graphify*.txt
+.graphify_python
+.graphifyignore
+*.log
+
+# Local worktree for gh-pages branch (website source lives there)
+.website-worktree/
+
+# Raw screenshot uploads — renamed copies live in assets/screenshots/
+images/

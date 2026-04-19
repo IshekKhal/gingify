@@ -1,0 +1,310 @@
+/* ============================================================
+   Gingify Tray Popup — Styles
+   Design: flat, minimal, Segoe UI, left-aligned
+   Tokens & base styles come from shared.css.
+   ============================================================ */
+
+@import '../shared.css';
+
+/* ── Body ───────────────────────────────────────────────────── */
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px;
+  background: var(--bg);
+  color: var(--text-primary);
+  width: 380px;
+  min-height: 480px;
+  overflow: hidden;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+body.popup-visible {
+  opacity: 1;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px 8px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--divider);
+}
+
+.popup-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.btn-close:hover {
+  color: var(--text-primary);
+}
+
+/* ── Sections ───────────────────────────────────────────────── */
+.section {
+  padding: 10px 12px;
+  background: var(--surface);
+}
+
+/* ── RAM Section ────────────────────────────────────────────── */
+.ram-section {
+  padding-bottom: 10px;
+}
+
+.ram-status-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.status-dot {
+  font-size: 10px;
+  line-height: 1;
+}
+
+.dot-green  { color: var(--green); }
+.dot-amber  { color: var(--amber); }
+.dot-red    { color: var(--red); }
+
+.ram-status-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Simple div-based RAM bar — no <progress> to avoid OS inconsistency */
+.ram-bar-track {
+  width: 100%;
+  height: 6px;
+  background: var(--divider);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ram-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--green);
+  border-radius: 3px;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.ram-detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.ram-detail-text {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* ── Action Buttons ─────────────────────────────────────────── */
+.action-section {
+  display: flex;
+  gap: 8px;
+  border-top: 1px solid var(--divider);
+  padding: 8px 12px;
+}
+
+.action-section .btn {
+  flex: 1;
+}
+
+/* ── Trim Result Banner ─────────────────────────────────────── */
+.trim-result-banner {
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--green);
+  background: var(--green-bg);
+  border-top: 1px solid var(--divider);
+}
+
+.trim-result-banner.banner-amber {
+  color: var(--amber);
+  background: var(--amber-bg);
+}
+
+/* ── Process Section ────────────────────────────────────────── */
+.process-section {
+  padding: 8px 12px;
+  border-top: none;
+}
+
+.process-loading {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.process-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* ── Process Row ────────────────────────────────────────────── */
+.process-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.process-row:last-child {
+  border-bottom: none;
+}
+
+.process-row:hover {
+  background-color: var(--row-hover-bg);
+}
+
+/* Sleeping process row */
+.process-row.is-suspended {
+  background: var(--suspended-tint);
+  opacity: 0.6;
+}
+
+.process-row.is-suspended .proc-name,
+.process-row.is-suspended .proc-ram {
+  color: var(--text-secondary);
+}
+
+.proc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.proc-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
+.proc-name {
+  flex: 1;
+  font-size: 12px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.proc-ram {
+  font-size: 11px;
+  color: var(--text-secondary);
+  min-width: 44px;
+  text-align: right;
+}
+
+.proc-status {
+  font-size: 11px;
+  color: var(--text-secondary);
+  min-width: 50px;
+  text-align: right;
+}
+
+.proc-btn {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px;
+  padding: 2px 7px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.proc-btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+/* Idle time label in process row */
+.proc-idle {
+  font-size: 10px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Inline suspend confirmation */
+.proc-confirm {
+  font-size: 11px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+/* ── See All Link ───────────────────────────────────────────── */
+.see-all-link {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.see-all-link:hover {
+  text-decoration: underline;
+  color: var(--text-primary);
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+.popup-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--surface);
+  border-top: 1px solid var(--divider);
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.profile-select {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--surface);
+  color: var(--text-primary);
+  padding: 2px 4px;
+  cursor: pointer;
+}
+
+.last-freed-text {
+  font-size: 11px;
+  color: var(--text-secondary);
+}

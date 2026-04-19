@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gingify — Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <h1>Gingify — Settings</h1>
+
+    <!-- Auto-Sleep Section -->
+    <section class="settings-section">
+      <h2 class="section-title">Auto-Snooze</h2>
+
+      <div class="setting-row">
+        <label class="setting-label" for="auto-sleep-toggle">Enable auto-snooze</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="auto-sleep-toggle">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+
+      <div class="setting-row">
+        <label class="setting-label" for="auto-sleep-after">Snooze tabs after</label>
+        <select id="auto-sleep-after">
+          <option value="5">5 minutes</option>
+          <option value="10">10 minutes</option>
+          <option value="20">20 minutes</option>
+          <option value="30">30 minutes</option>
+          <option value="60">1 hour</option>
+          <option value="120">2 hours</option>
+        </select>
+      </div>
+
+      <div class="setting-row">
+        <label class="setting-label" for="sleep-pinned-toggle">Snooze pinned tabs</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="sleep-pinned-toggle">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+
+      <div class="setting-row">
+        <label class="setting-label" for="sleep-minimize-toggle">Snooze tabs when Chrome loses focus</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="sleep-minimize-toggle">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Per-Domain Rules Section -->
+    <section class="settings-section">
+      <h2 class="section-title">Per-Domain Rules</h2>
+
+      <table id="rules-table" class="rules-table">
+        <thead>
+          <tr>
+            <th>Domain</th>
+            <th>Action</th>
+            <th>After</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="rules-tbody"></tbody>
+      </table>
+
+      <div id="no-rules-msg" class="no-rules-msg">No rules yet.</div>
+
+      <button id="add-rule-btn" class="btn-secondary">+ Add Rule</button>
+
+      <div id="add-rule-form" class="add-rule-form" hidden>
+        <input type="text" id="rule-domain" placeholder="example.com" autocomplete="off">
+        <select id="rule-action">
+          <option value="never">Never snooze</option>
+          <option value="sleep">Snooze after…</option>
+        </select>
+        <input type="number" id="rule-after" min="1" max="1440" placeholder="mins" hidden>
+        <button id="save-rule-btn" class="btn-primary">Save</button>
+      </div>
+
+      <div id="storage-warning" class="storage-warning" hidden>
+        Storage <span id="storage-pct"></span>% full — approaching limit.
+      </div>
+      <div id="storage-full-error" class="storage-full-error" hidden>
+        Storage full — remove old rules to add new ones.
+      </div>
+    </section>
+
+    <!-- Notifications Section -->
+    <section class="settings-section">
+      <h2 class="section-title">Notifications</h2>
+
+      <div class="setting-row">
+        <label class="setting-label" for="notifications-toggle">Show a notification when tabs are snoozed</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="notifications-toggle">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="settings-section about-section">
+      <h2 class="section-title">About</h2>
+      <p class="about-version">Gingify v<span id="version-number"></span></p>
+      <p class="about-note">RAM figures are approximate — Chrome does not expose exact per-tab memory to extensions.</p>
+      <p><a href="https://github.com/IshekKhal/gingify" target="_blank" rel="noopener">GitHub</a></p>
+      <p><a href="https://github.com/IshekKhal/gingify/releases" target="_blank" rel="noopener">Download Gingify for Windows ↗</a></p>
+    </section>
+  </main>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

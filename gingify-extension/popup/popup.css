@@ -1,0 +1,271 @@
+/* ── Reset ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Root variables (light) ─────────────────────────────────────────────── */
+:root {
+    --bg: #F0F0F0;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A1A;
+    --text-secondary: #666666;
+    --border: #DCDCDC;
+    --hover-bg: #E8E8E8;
+    --green: #2E7D32;
+    --amber: #E65100;
+    --red: #C62828;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #1E1E1E;
+        --surface: #2A2A2A;
+        --text-primary: #E8E8E8;
+        --text-secondary: #999999;
+        --border: #3A3A3A;
+        --hover-bg: #333333;
+    }
+}
+
+/* ── Body ───────────────────────────────────────────────────────────────── */
+body {
+    width: 360px;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 13px;
+    min-height: 0;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--surface);
+}
+
+#header-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+#settings-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text-secondary);
+    padding: 2px 4px;
+    line-height: 1;
+}
+
+#settings-btn:hover {
+    color: var(--text-primary);
+}
+
+/* ── Divider ────────────────────────────────────────────────────────────── */
+.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+}
+
+/* ── RAM Section ────────────────────────────────────────────────────────── */
+#ram-section {
+    padding: 10px 14px;
+    background: var(--surface);
+}
+
+#ram-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+#ram-bar-track {
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#ram-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 4px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    background: var(--green);
+}
+
+#ram-status {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* ── Action Row ─────────────────────────────────────────────────────────── */
+#action-row {
+    display: flex;
+    background: var(--surface);
+}
+
+#action-row button {
+    flex: 1;
+    height: 32px;
+    border: none;
+    border-top: none;
+    border-bottom: none;
+    background: var(--surface);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#action-row button:first-child {
+    border-right: 1px solid var(--border);
+}
+
+#action-row button:hover {
+    background: var(--hover-bg);
+}
+
+/* ── Tab Section Label ──────────────────────────────────────────────────── */
+#tab-section-label {
+    padding: 6px 14px 4px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--bg);
+}
+
+/* ── Tab List ───────────────────────────────────────────────────────────── */
+#tab-list {
+    max-height: 260px;
+    overflow-y: auto;
+    background: var(--surface);
+}
+
+/* Window group header */
+.window-header {
+    padding: 6px 14px 2px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--bg);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Tab row */
+.tab-row {
+    display: flex;
+    align-items: center;
+    padding: 7px 14px;
+    cursor: default;
+    border-left: 3px solid transparent;
+}
+
+.tab-row:hover {
+    background: var(--hover-bg);
+}
+
+.tab-row.active {
+    border-left-color: var(--green);
+}
+
+.tab-row.sleeping {
+    opacity: 0.6;
+}
+
+/* Favicon */
+.tab-favicon {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    margin-right: 8px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+/* Title */
+.tab-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 12px;
+    color: var(--text-primary);
+}
+
+/* RAM estimate */
+.tab-ram {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-right: 8px;
+    min-width: 50px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+/* Per-row action button */
+.tab-btn {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 11px;
+    padding: 2px 6px;
+    cursor: pointer;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.tab-btn:hover:not(:disabled) {
+    background: var(--hover-bg);
+}
+
+.tab-btn:disabled {
+    color: var(--text-secondary);
+    cursor: default;
+    border-color: transparent;
+    background: none;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+#footer {
+    padding: 8px 14px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+/* ── Permission Error ────────────────────────────────────────────────────── */
+.permission-error {
+    padding: 16px 14px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.permission-error p {
+    margin-bottom: 10px;
+}
+
+#restore-perms-btn {
+    font-family: var(--font);
+    font-size: 12px;
+    padding: 5px 12px;
+    background: var(--surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#restore-perms-btn:hover {
+    background: var(--hover-bg);
+}

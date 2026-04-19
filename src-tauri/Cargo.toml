@@ -1,0 +1,87 @@
+[package]
+name = "gingify"
+version = "1.0.1"
+description = "Gingify — Windows RAM Manager"
+authors = ["Abhishek Khanra"]
+edition = "2021"
+
+# Lib exposes run() called from main.rs
+[lib]
+name = "gingify_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0", features = [] }
+
+[dependencies]
+# Tauri — app framework, tray, window management, IPC
+tauri = { version = "2.10.3", features = ["tray-icon"] }
+
+# Shell plugin — open URLs in the system browser (GitHub link, update download)
+tauri-plugin-shell = "2"
+
+# Windows APIs — Microsoft's official Rust bindings
+windows = { version = "0.62.2", features = [
+    # Process enumeration & info
+    "Win32_System_ProcessStatus",
+    # Process open/handle operations (CreateMutexW also lives here)
+    "Win32_System_Threading",
+    # Foundation types (HANDLE, CloseHandle, GetLastError, etc.)
+    "Win32_Foundation",
+    # System memory info (GlobalMemoryStatusEx)
+    "Win32_System_SystemInformation",
+    # Accessibility / event hook (SetWinEventHook for foreground change)
+    "Win32_UI_Accessibility",
+    # Library loading (LoadLibrary, GetProcAddress for ntdll)
+    "Win32_System_LibraryLoader",
+    # Windows toast notifications + SHGetFileInfoW for process icons
+    "Win32_UI_Shell",
+    # WindowsAndMessaging (GetMessage, GetWindowThreadProcessId, WinEvent constants, DrawIconEx)
+    "Win32_UI_WindowsAndMessaging",
+    # Security types — required by CreateMutexW (SECURITY_ATTRIBUTES parameter)
+    # <!-- CHANGED --> Added in Prompt 10 — needed for duplicate-instance mutex
+    "Win32_Security",
+    # GDI — CreateCompatibleDC, CreateDIBSection, SelectObject for icon-to-PNG conversion
+    "Win32_Graphics_Gdi",
+    # FILE_FLAGS_AND_ATTRIBUTES type used by SHGetFileInfoW
+    "Win32_Storage_FileSystem",
+    # Registry — HKCU\...\Run key for start-with-Windows
+    "Win32_System_Registry",
+] }
+
+# PNG encoder for process icons (pure Rust, no native deps)
+png = "0.17"
+
+# Serialization for IPC payloads and config JSON
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Async runtime for background monitor loop
+tokio = { version = "1.0", features = ["full"] }
+
+# Fast Mutex/RwLock (faster than std::sync)
+parking_lot = "0.12.5"
+
+# Logging — writes to %APPDATA%\Gingify\gingify.log (visible in release builds)
+log = "0.4"
+simplelog = "0.12"
+
+# Error handling
+anyhow = "1.0.88"
+thiserror = "2.0.18"
+
+# HTTP client for version check — native-tls uses Windows SChannel (no cmake/nasm required)
+reqwest = { version = "0.13.2", features = ["json", "native-tls"], default-features = false }
+
+# Version string comparison for update checker
+semver = "1.0.28"
+
+# Windows 10/11 toast notifications
+# <!-- CHANGED --> Added in Prompt 06 — using win-toast-notify (active, works on Win10+11)
+win-toast-notify = "0.1"
+
+[features]
+# This feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
+

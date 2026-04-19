@@ -1,0 +1,4 @@
+#pragma code_page(65001)
+
+// RT_MANIFEST (type 24), ID 1 — application manifest requesting admin elevation
+1 24 "gingify.manifest"

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Gingify",
+  "version": "1.0.1",
+  "identifier": "app.gingify.desktop",
+  "build": {
+    "beforeDevCommand": "",
+    "beforeBuildCommand": "",
+    "frontendDist": "../src"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "popup",
+        "title": "Gingify",
+        "width": 380,
+        "height": 480,
+        "resizable": false,
+        "decorations": false,
+        "visible": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "url": "tray_popup/index.html"
+      },
+      {
+        "label": "detail",
+        "title": "Gingify",
+        "width": 700,
+        "height": 520,
+        "resizable": true,
+        "decorations": true,
+        "visible": false,
+        "alwaysOnTop": false,
+        "skipTaskbar": false,
+        "url": "detail_window/index.html"
+      },
+      {
+        "label": "onboarding",
+        "title": "Gingify",
+        "width": 480,
+        "height": 400,
+        "resizable": false,
+        "decorations": false,
+        "visible": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "center": true,
+        "url": "onboarding/index.html"
+      }
+    ]
+  },
+  "plugins": {
+    "shell": {
+      "open": true
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "copyright": "© 2026 Gingify",
+    "windows": {
+      "nsis": {
+        "displayLanguageSelector": false,
+        "installMode": "perMachine",
+        "languages": ["English"],
+        "installerHooks": "installer_hooks.nsh",
+        "template": null,
+        "installerIcon": "icons/icon.ico"
+      }
+    }
+  }
+}

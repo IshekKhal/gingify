@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gingify</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header id="header">
+    <span id="header-title">Gingify</span>
+    <button id="settings-btn" title="Settings">⚙</button>
+  </header>
+  <hr class="divider">
+  <div id="ram-section">
+    <div id="ram-label">RAM Pressure</div>
+    <div id="ram-bar-track"><div id="ram-bar-fill"></div></div>
+    <div id="ram-status"></div>
+  </div>
+  <hr class="divider">
+  <div id="action-row">
+    <button id="sleep-all-btn">Snooze All</button>
+    <button id="wake-all-btn">Wake All</button>
+  </div>
+  <hr class="divider">
+  <div id="tab-section-label"></div>
+  <div id="tab-list"></div>
+  <footer id="footer"></footer>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

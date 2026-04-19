@@ -1,0 +1,253 @@
+/* ============================================================
+   Gingify — Shared Design Tokens & Base Styles
+   Imported by both popup.css and app.css.
+   All colour via CSS variables — no hardcoded hex in rules.
+   ============================================================ */
+
+/* ── Design tokens — Light mode (default) ─────────────────── */
+:root {
+  --bg:              #F0F0F0;
+  --surface:         #FFFFFF;
+  --text-primary:    #1A1A1A;
+  --text-secondary:  #666666;
+  --green:           #2E7D32;
+  --green-bg:        #E8F5E9;
+  --amber:           #E65100;
+  --amber-bg:        #FFF3E0;
+  --red:             #C62828;
+  --red-bg:          #FFEBEE;
+  --divider:         #DCDCDC;
+  --suspended-tint:  #F5F5F5;
+  --border:          #D0D0D0;
+  --btn-hover-bg:    #E8E8E8;
+  --row-hover-bg:    #E6E6E6;
+  --badge-green-text: #2E7D32;
+  --badge-amber-text: #E65100;
+  --badge-red-text:   #C62828;
+}
+
+/* ── Design tokens — Dark mode (system preference) ────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:              #1E1E1E;
+    --surface:         #2A2A2A;
+    --text-primary:    #E8E8E8;
+    --text-secondary:  #999999;
+    --green:           #66BB6A;
+    --green-bg:        #1B3A1E;
+    --amber:           #FFA040;
+    --amber-bg:        #3A2A10;
+    --red:             #EF5350;
+    --red-bg:          #3A1010;
+    --divider:         #3A3A3A;
+    --suspended-tint:  #252525;
+    --border:          #484848;
+    --btn-hover-bg:    #363636;
+    --row-hover-bg:    #333333;
+    --badge-green-text: #66BB6A;
+    --badge-amber-text: #FFA040;
+    --badge-red-text:   #EF5350;
+  }
+}
+
+/* ── Design tokens — Dark mode (manual .theme-dark override) ── */
+.theme-dark {
+  --bg:              #1E1E1E;
+  --surface:         #2A2A2A;
+  --text-primary:    #E8E8E8;
+  --text-secondary:  #999999;
+  --green:           #66BB6A;
+  --green-bg:        #1B3A1E;
+  --amber:           #FFA040;
+  --amber-bg:        #3A2A10;
+  --red:             #EF5350;
+  --red-bg:          #3A1010;
+  --divider:         #3A3A3A;
+  --suspended-tint:  #252525;
+  --border:          #484848;
+  --btn-hover-bg:    #363636;
+  --row-hover-bg:    #333333;
+  --badge-green-text: #66BB6A;
+  --badge-amber-text: #FFA040;
+  --badge-red-text:   #EF5350;
+}
+
+/* ── Design tokens — Light mode (manual .theme-light override) */
+.theme-light {
+  --bg:              #F0F0F0;
+  --surface:         #FFFFFF;
+  --text-primary:    #1A1A1A;
+  --text-secondary:  #666666;
+  --green:           #2E7D32;
+  --green-bg:        #E8F5E9;
+  --amber:           #E65100;
+  --amber-bg:        #FFF3E0;
+  --red:             #C62828;
+  --red-bg:          #FFEBEE;
+  --divider:         #DCDCDC;
+  --suspended-tint:  #F5F5F5;
+  --border:          #D0D0D0;
+  --btn-hover-bg:    #E8E8E8;
+  --row-hover-bg:    #E6E6E6;
+  --badge-green-text: #2E7D32;
+  --badge-amber-text: #E65100;
+  --badge-red-text:   #C62828;
+}
+
+/* ── Base reset ─────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base button styles ─────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+.btn:active {
+  background: var(--divider);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  font-weight: 600;
+  border-color: #BDBDBD;
+}
+
+.btn-danger {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.btn-danger:hover {
+  background: var(--red-bg);
+}
+
+.btn-ghost {
+  border-color: transparent;
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  background: var(--btn-hover-bg);
+  border-color: var(--border);
+}
+
+/* ── Base input styles ──────────────────────────────────────── */
+input[type="text"],
+input[type="search"],
+select {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--surface);
+  color: var(--text-primary);
+  padding: 4px 6px;
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+select:focus {
+  border-color: var(--text-secondary);
+}
+
+/* ── Divider ────────────────────────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--divider);
+  margin: 0;
+}
+
+/* ── Data row ───────────────────────────────────────────────── */
+.data-row {
+  display: flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-bottom: 1px solid var(--divider);
+  background: var(--surface);
+  cursor: default;
+}
+
+.data-row:last-child {
+  border-bottom: none;
+}
+
+.data-row:hover {
+  background: var(--row-hover-bg);
+}
+
+.data-row.suspended {
+  background: var(--suspended-tint);
+  opacity: 0.75;
+}
+
+/* ── Badge / pill ───────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.badge-green {
+  color: var(--badge-green-text);
+  background: var(--green-bg);
+}
+
+.badge-amber {
+  color: var(--badge-amber-text);
+  background: var(--amber-bg);
+}
+
+.badge-red {
+  color: var(--badge-red-text);
+  background: var(--red-bg);
+}
+
+/* ── Hidden utility ─────────────────────────────────────────── */
+.hidden {
+  display: none !important;
+}
+
+/* ── Inline error — Flow 15 (UIUX_DESKTOP.md) ──────────────────────────── */
+/* Used for access-denied and RAM-stat failure error states on process rows. */
+/* No icon, no animation — plain left-bordered error strip. */
+.inline-error {
+  background: #FFEBEE;
+  border-left: 3px solid #C62828;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #C62828;
+  margin: 2px 0;
+  border-radius: 0 2px 2px 0;
+  position: relative;
+}
