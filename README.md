@@ -1,4 +1,4 @@
-# Gingify — RAM Manager for Windows
+# Gingify — RAM Bloat Manager for Chromium & Windows
 
 [![Build & Release](https://github.com/IshekKhal/gingify/actions/workflows/build.yml/badge.svg)](https://github.com/IshekKhal/gingify/actions/workflows/build.yml)
 [![Downloads](https://img.shields.io/github/downloads/IshekKhal/gingify/total?color=brightgreen&label=downloads)](https://github.com/IshekKhal/gingify/releases)
@@ -11,7 +11,7 @@
 
 ## What is Gingify?
 
-Gingify sits quietly in your Windows system tray and watches your RAM. When background apps are wasting memory they are not actively using, Gingify puts them to sleep — freeing up RAM for whatever you are actually doing.
+Gingify sits quietly in your Windows system tray & Browser extensions and watches your RAM. When background apps are wasting memory they are not actively using, Gingify puts them to sleep — freeing up RAM for whatever you are actually doing.
 
 - **Nothing is killed.** Snoozed apps are still running. They wake up the instant you click on them, exactly where you left off.
 - **Nothing is hidden.** Every action Gingify takes is logged in the History tab so you always know what happened.
@@ -98,7 +98,7 @@ Output: `target/x86_64-pc-windows-msvc/release/bundle/nsis/Gingify_x.x.x_x64-set
 
 ---
 
-## Gingify for Chrome (Tab Memory Manager)
+## Gingify for Chromium (Tab Memory Manager)
 
 If the desktop app manages Gingify at the process level, the Chrome extension is the same idea one layer deeper — it manages memory **inside Chrome itself, tab by tab**. A single YouTube tab can hold 200–300 MB of video buffer, decoded images, and JS heap state. Eight of them, sitting in the background while you actually work in a ninth, silently burn 1.5–2.5 GB of RAM.
 
